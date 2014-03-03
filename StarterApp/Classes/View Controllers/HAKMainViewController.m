@@ -49,22 +49,31 @@
     if(self.registrationViewController == nil) self.registrationViewController = [[HAKRegistrationViewController alloc] initWithNibName:@"RegistrationView" bundle:nil];
     
     [self.view addSubview:self.registrationViewController.view];
+    
     [UIView transitionFromView:(self.loginViewController.view)
                         toView:(self.registrationViewController.view)
                       duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromRight
-                    completion:nil];
+                    completion:^(BOOL finished){
+                        [self.loginViewController.view removeFromSuperview];
+                        self.loginViewController = nil;
+                        [self.registrationViewController doneAnimating];
+                    }];
 }
 
 -(void)animateToLoginView{
     if(self.loginViewController == nil) self.loginViewController = [[HAKLoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
     
-    [self.view addSubview:self.registrationViewController.view];
-    [UIView transitionFromView:(self.loginViewController.view)
-                        toView:(self.registrationViewController.view)
+    [self.view addSubview:self.loginViewController.view];
+    
+    [UIView transitionFromView:(self.registrationViewController.view)
+                        toView:(self.loginViewController.view)
                       duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromLeft
-                    completion:nil];
+                    completion:^(BOOL finished){
+                        [self.registrationViewController.view removeFromSuperview];
+                        self.registrationViewController = nil;
+                    }];
 }
 
 
@@ -73,10 +82,7 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    
-    if(self.loginViewController != nil && self.loginViewController.view.superview == nil) self.loginViewController = nil;
-    if(self.registrationViewController != nil && self.registrationViewController.view.superview == nil) self.registrationViewController = nil;
-    
+
 }
 
 

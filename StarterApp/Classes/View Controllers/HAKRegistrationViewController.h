@@ -10,4 +10,7 @@
 
 @interface HAKRegistrationViewController : UIViewController
 
+
+-(void)doneAnimating;
+
 @end

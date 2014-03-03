@@ -74,12 +74,12 @@
 }
 
 - (IBAction)onForgotPasswordPress:(UIButton *)sender {
+    // TODO: add forgot password stuff
     
 }
 
 - (IBAction)backgroundTap:(UIControl *)sender {
-    [self.emailField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 
