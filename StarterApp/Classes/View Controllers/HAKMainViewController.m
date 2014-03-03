@@ -11,6 +11,7 @@
 #import "HAKLoginViewController.h"
 #import "HAKRegistrationViewController.h"
 #import "HAKAppDelegate.h"
+#import "HAKNetwork.h"
 
 @interface HAKMainViewController ()
 @property (strong,nonatomic) HAKLoginViewController *loginViewController;
@@ -24,13 +25,15 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    self.network = [[HAKNetwork alloc] init];
+    
 	self.loginViewController = [[HAKLoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
     [self.view addSubview:self.loginViewController.view];
 }
 
 
 
-+(id) sharedInstance{
++(HAKMainViewController*) sharedInstance{
     // Use [HAKMainViewController sharedInstance] in any class to access the shared instance
     
 	static HAKMainViewController *SharedInstance = nil;

@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HAKNetwork;
+
 
 @interface HAKMainViewController : UIViewController
 
+@property (strong,nonatomic) HAKNetwork *network;
 
-+(id) sharedInstance;
 
-
++(HAKMainViewController*) sharedInstance;
 
 -(void)animateToRegistrationView;
 -(void)animateToLoginView;

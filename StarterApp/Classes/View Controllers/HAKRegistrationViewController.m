@@ -9,24 +9,26 @@
 #import "HAKRegistrationViewController.h"
 #import "HAKMainViewController.h"
 #import "HAKHelperMethods.h"
+#import "HAKNetwork.h"
 
 @interface HAKRegistrationViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordVerifyField;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
+@property (weak, nonatomic) IBOutlet UITextField *nicknameField;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
 
 - (IBAction)onBackPress:(UIButton *)sender;
 - (IBAction)onRegisterPress:(UIButton *)sender;
-
 - (IBAction)backgroundTap:(UIControl *)sender;
 
+- (IBAction)textFieldDoneEditing:(UITextField *)sender;
 
-- (IBAction)emailFieldDoneEditing:(UITextField *)sender;
-- (IBAction)passwordFieldDoneEditing:(UITextField *)sender;
-- (IBAction)passwordVerifyFieldDoneEditing:(UITextField *)sender;
+
 
 @end
 
@@ -55,8 +57,11 @@
         [HAKHelperMethods showAlert:nil withMessage:@"Please make sure the password fields match."];
         return;
     }
+    // If first name, last name, or nickname are required for registration, put that code here
+    // Otherwise, let them register without that info
     
-    // TODO - register user
+    [[HAKMainViewController sharedInstance].network registerNewUserWithEmail:self.emailField.text password:self.passwordField.text firstName:self.firstNameField.text lastName:self.lastNameField.text nickname:self.nicknameField.text];
+    
 }
 
 
@@ -82,19 +87,15 @@
 
 #pragma mark - Text Field Methods
 
-- (IBAction)emailFieldDoneEditing:(UITextField *)sender {
-    [self.emailField resignFirstResponder];
-    [self.passwordField becomeFirstResponder];
-}
-
-- (IBAction)passwordFieldDoneEditing:(UITextField *)sender {
-    [self.passwordField resignFirstResponder];
-    [self.passwordVerifyField becomeFirstResponder];
-}
-
-- (IBAction)passwordVerifyFieldDoneEditing:(UITextField *)sender {
-    [self.passwordVerifyField resignFirstResponder];
-    [self registerUser];
+- (IBAction)textFieldDoneEditing:(UITextField *)sender {
+    int tag = sender.tag;
+    if(tag == 6){
+        [sender resignFirstResponder];
+        [self registerUser];
+    }else{
+        UITextField *nextField = (UITextField*)[self.view viewWithTag:tag+1];
+        [nextField becomeFirstResponder];
+    }
 }
 
 

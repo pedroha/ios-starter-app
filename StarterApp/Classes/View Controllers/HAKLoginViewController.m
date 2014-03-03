@@ -9,7 +9,7 @@
 #import "HAKLoginViewController.h"
 #import "HAKHelperMethods.h"
 #import "HAKMainViewController.h"
-
+#import "HAKNetwork.h"
 
 @interface HAKLoginViewController ()
 
@@ -51,7 +51,7 @@
         return;
     }
     
-    // TODO: login network code
+    [[HAKMainViewController sharedInstance].network loginUserWithEmail:self.emailField.text andPassword:self.passwordField.text];
 }
 
 
@@ -74,8 +74,11 @@
 }
 
 - (IBAction)onForgotPasswordPress:(UIButton *)sender {
-    // TODO: add forgot password stuff
-    
+    if(![HAKHelperMethods validateEmail:self.emailField.text]){
+        [HAKHelperMethods showAlert:nil withMessage:@"Please enter a valid email address."];
+        return;
+    }
+    [[HAKMainViewController sharedInstance].network userForgotPassword:self.emailField.text];
 }
 
 - (IBAction)backgroundTap:(UIControl *)sender {
