@@ -19,18 +19,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
 @property (weak, nonatomic) IBOutlet UITextField *nicknameField;
-
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
+
+@property (strong,nonatomic) HAKNetwork *network;
 
 - (IBAction)onBackPress:(UIButton *)sender;
 - (IBAction)onRegisterPress:(UIButton *)sender;
 - (IBAction)backgroundTap:(UIControl *)sender;
-
 - (IBAction)textFieldDoneEditing:(UITextField *)sender;
 
 
-
 @end
+
+
+
 
 @implementation HAKRegistrationViewController
 
@@ -38,6 +40,7 @@
     [super viewDidLoad];
 	
 	for(UIButton *button in self.buttonCollection) button.layer.cornerRadius = 16;
+    self.network = [[HAKNetwork alloc] init];
 }
 -(void)doneAnimating{
     [self.emailField becomeFirstResponder];
@@ -60,7 +63,7 @@
     // If first name, last name, or nickname are required for registration, put that code here
     // Otherwise, let them register without that info
     
-    [[HAKMainViewController sharedInstance].network registerNewUserWithEmail:self.emailField.text password:self.passwordField.text firstName:self.firstNameField.text lastName:self.lastNameField.text nickname:self.nicknameField.text];
+    [self.network registerNewUserWithEmail:self.emailField.text password:self.passwordField.text firstName:self.firstNameField.text lastName:self.lastNameField.text nickname:self.nicknameField.text];
     
 }
 
@@ -99,6 +102,24 @@
 }
 
 
+
+
+
+#pragma mark - Network Delegate Methods
+
+-(void)networkSuccess:(NSString *)name responseDictionary:(NSDictionary *)responseDictionary{
+    NSString *statusString = responseDictionary[@"code"];
+    NSInteger code = [statusString integerValue];
+    if(code == 200){
+        [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
+    }else{
+        [HAKHelperMethods showAlert:@"Error" withMessage:responseDictionary[@"error"][@"message"]];
+    }
+}
+-(void)networkFailure:(NSString *)name error:(NSError *)error{
+    [HAKHelperMethods showAlert:@"Network error" withMessage:@"We're sorry, registration could not be completed."];
+    // If there's an option to use the app without logging in, put that here.
+}
 
 
 

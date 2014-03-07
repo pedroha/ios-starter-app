@@ -10,12 +10,14 @@
 #import "HAKMainViewController.h"
 #import "HAKLoginViewController.h"
 #import "HAKRegistrationViewController.h"
+#import "HAKSuccessViewController.h"
 #import "HAKAppDelegate.h"
-#import "HAKNetwork.h"
+#import "HAKNetworkReachabiltiy.h"
 
 @interface HAKMainViewController ()
 @property (strong,nonatomic) HAKLoginViewController *loginViewController;
 @property (strong,nonatomic) HAKRegistrationViewController *registrationViewController;
+@property (strong,nonatomic) HAKSuccessViewController *successViewController;
 @end
 
 @implementation HAKMainViewController
@@ -25,12 +27,11 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    self.network = [[HAKNetwork alloc] init];
+    self.reachability = [[HAKNetworkReachabiltiy alloc] init];
     
 	self.loginViewController = [[HAKLoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
     [self.view addSubview:self.loginViewController.view];
 }
-
 
 
 +(HAKMainViewController*) sharedInstance{
@@ -79,6 +80,21 @@
                     }];
 }
 
+-(void)animateToSuccessViewFromView:(UIView*)view{
+    if(self.successViewController == nil) self.successViewController = [[HAKSuccessViewController alloc] initWithNibName:@"SuccessView" bundle:nil];
+    
+    [self.view addSubview:self.successViewController.view];
+    
+    [UIView transitionFromView:view
+                        toView:(self.successViewController.view)
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    completion:^(BOOL finished){
+                        [view removeFromSuperview];
+                        self.registrationViewController = nil;
+                        self.loginViewController = nil;
+                    }];
+}
 
 
 #pragma mark - Memory Warning

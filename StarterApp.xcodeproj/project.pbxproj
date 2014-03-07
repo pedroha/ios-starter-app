@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB7366F518CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */; };
+		BB7366F618CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */; };
+		BB7366F918CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F818CA45B9004E97E6 /* HAKSuccessViewController.m */; };
+		BB7366FA18CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F818CA45B9004E97E6 /* HAKSuccessViewController.m */; };
+		BB7366FC18CA45D0004E97E6 /* SuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7366FB18CA45D0004E97E6 /* SuccessView.xib */; };
+		BB7366FD18CA45D0004E97E6 /* SuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7366FB18CA45D0004E97E6 /* SuccessView.xib */; };
+		BB7366FF18CA47B1004E97E6 /* HAKHelperMethodsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366FE18CA47B1004E97E6 /* HAKHelperMethodsTests.m */; };
+		BB73670318CA4B79004E97E6 /* HAKMockNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670218CA4B79004E97E6 /* HAKMockNetwork.m */; };
+		BB73670518CA4BE0004E97E6 /* HAKNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670418CA4BE0004E97E6 /* HAKNetworkTests.m */; };
+		BB73670818CA684E004E97E6 /* HAKMockNetworkDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670718CA684E004E97E6 /* HAKMockNetworkDelegate.m */; };
 		BBE3E12318C51095008857F8 /* HAKNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE3E12218C51095008857F8 /* HAKNetwork.m */; };
 		BBE3E13918C511C4008857F8 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE3E12718C511C4008857F8 /* AFHTTPRequestOperation.m */; };
 		BBE3E13A18C511C4008857F8 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE3E12918C511C4008857F8 /* AFHTTPRequestOperationManager.m */; };
@@ -30,7 +40,6 @@
 		BBEB8BD518BD12D50085FA78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEB8BB818BD12D50085FA78 /* UIKit.framework */; };
 		BBEB8BD618BD12D50085FA78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEB8BBA18BD12D50085FA78 /* CoreData.framework */; };
 		BBEB8BDE18BD12D50085FA78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBEB8BDC18BD12D50085FA78 /* InfoPlist.strings */; };
-		BBEB8BE018BD12D50085FA78 /* StarterAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB8BDF18BD12D50085FA78 /* StarterAppTests.m */; };
 		BBEB8BF018BD137F0085FA78 /* HAKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB8BEF18BD137F0085FA78 /* HAKAppDelegate.m */; };
 		BBEB8BF418BD13B40085FA78 /* StarterApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBEB8BF218BD13B40085FA78 /* StarterApp.xcdatamodeld */; };
 		BBEB8BF818BD17AA0085FA78 /* HAKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB8BF718BD17AA0085FA78 /* HAKMainViewController.m */; };
@@ -53,6 +62,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB7366EF18CA3355004E97E6 /* HAKNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkDelegate.h; path = Classes/Network/HAKNetworkDelegate.h; sourceTree = "<group>"; };
+		BB7366F318CA36C9004E97E6 /* HAKNetworkReachabiltiy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkReachabiltiy.h; path = Classes/Network/HAKNetworkReachabiltiy.h; sourceTree = "<group>"; };
+		BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKNetworkReachabiltiy.m; path = Classes/Network/HAKNetworkReachabiltiy.m; sourceTree = "<group>"; };
+		BB7366F718CA45B9004E97E6 /* HAKSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKSuccessViewController.h; path = "Classes/View Controllers/HAKSuccessViewController.h"; sourceTree = "<group>"; };
+		BB7366F818CA45B9004E97E6 /* HAKSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKSuccessViewController.m; path = "Classes/View Controllers/HAKSuccessViewController.m"; sourceTree = "<group>"; };
+		BB7366FB18CA45D0004E97E6 /* SuccessView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SuccessView.xib; path = Views/SuccessView.xib; sourceTree = "<group>"; };
+		BB7366FE18CA47B1004E97E6 /* HAKHelperMethodsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKHelperMethodsTests.m; sourceTree = "<group>"; };
+		BB73670118CA4B79004E97E6 /* HAKMockNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAKMockNetwork.h; sourceTree = "<group>"; };
+		BB73670218CA4B79004E97E6 /* HAKMockNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKMockNetwork.m; sourceTree = "<group>"; };
+		BB73670418CA4BE0004E97E6 /* HAKNetworkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKNetworkTests.m; sourceTree = "<group>"; };
+		BB73670618CA684E004E97E6 /* HAKMockNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAKMockNetworkDelegate.h; sourceTree = "<group>"; };
+		BB73670718CA684E004E97E6 /* HAKMockNetworkDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKMockNetworkDelegate.m; sourceTree = "<group>"; };
 		BBE3E12118C51095008857F8 /* HAKNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetwork.h; path = Classes/Network/HAKNetwork.h; sourceTree = "<group>"; };
 		BBE3E12218C51095008857F8 /* HAKNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKNetwork.m; path = Classes/Network/HAKNetwork.m; sourceTree = "<group>"; };
 		BBE3E12618C511C4008857F8 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -91,7 +112,6 @@
 		BBEB8BD218BD12D50085FA78 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BBEB8BDB18BD12D50085FA78 /* StarterAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StarterAppTests-Info.plist"; sourceTree = "<group>"; };
 		BBEB8BDD18BD12D50085FA78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BBEB8BDF18BD12D50085FA78 /* StarterAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarterAppTests.m; sourceTree = "<group>"; };
 		BBEB8BEE18BD137F0085FA78 /* HAKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKAppDelegate.h; path = Classes/HAKAppDelegate.h; sourceTree = "<group>"; };
 		BBEB8BEF18BD137F0085FA78 /* HAKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKAppDelegate.m; path = Classes/HAKAppDelegate.m; sourceTree = "<group>"; };
 		BBEB8BF318BD13B40085FA78 /* StarterApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StarterApp.xcdatamodel; sourceTree = "<group>"; };
@@ -133,11 +153,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB73670018CA4AF4004E97E6 /* Mocks and Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				BB73670118CA4B79004E97E6 /* HAKMockNetwork.h */,
+				BB73670218CA4B79004E97E6 /* HAKMockNetwork.m */,
+				BB73670618CA684E004E97E6 /* HAKMockNetworkDelegate.h */,
+				BB73670718CA684E004E97E6 /* HAKMockNetworkDelegate.m */,
+			);
+			name = "Mocks and Fakes";
+			sourceTree = "<group>";
+		};
 		BBE3E12018C50F5F008857F8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				BB7366EF18CA3355004E97E6 /* HAKNetworkDelegate.h */,
 				BBE3E12118C51095008857F8 /* HAKNetwork.h */,
 				BBE3E12218C51095008857F8 /* HAKNetwork.m */,
+				BB7366F318CA36C9004E97E6 /* HAKNetworkReachabiltiy.h */,
+				BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -245,8 +279,10 @@
 		BBEB8BD918BD12D50085FA78 /* StarterAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				BBEB8BDF18BD12D50085FA78 /* StarterAppTests.m */,
+				BB73670018CA4AF4004E97E6 /* Mocks and Fakes */,
 				BBEB8BDA18BD12D50085FA78 /* Supporting Files */,
+				BB7366FE18CA47B1004E97E6 /* HAKHelperMethodsTests.m */,
+				BB73670418CA4BE0004E97E6 /* HAKNetworkTests.m */,
 			);
 			path = StarterAppTests;
 			sourceTree = "<group>";
@@ -279,6 +315,7 @@
 				BBEB8BF918BD17C10085FA78 /* MainView.xib */,
 				BBEB8C0118BD1B200085FA78 /* RegistrationView.xib */,
 				BBEB8C0318BD1B2A0085FA78 /* LoginView.xib */,
+				BB7366FB18CA45D0004E97E6 /* SuccessView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -308,6 +345,8 @@
 				BBEB8BFC18BD1AF80085FA78 /* HAKRegistrationViewController.m */,
 				BBEB8BFE18BD1B090085FA78 /* HAKLoginViewController.h */,
 				BBEB8BFF18BD1B090085FA78 /* HAKLoginViewController.m */,
+				BB7366F718CA45B9004E97E6 /* HAKSuccessViewController.h */,
+				BB7366F818CA45B9004E97E6 /* HAKSuccessViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -390,6 +429,7 @@
 			files = (
 				BBEB8C0D18BD28240085FA78 /* hackeratiCornyTitle@2x.png in Resources */,
 				BBEB8BFA18BD17C10085FA78 /* MainView.xib in Resources */,
+				BB7366FC18CA45D0004E97E6 /* SuccessView.xib in Resources */,
 				BBEB8BC118BD12D50085FA78 /* InfoPlist.strings in Resources */,
 				BBEB8BCC18BD12D50085FA78 /* Images.xcassets in Resources */,
 				BBEB8C0418BD1B2A0085FA78 /* LoginView.xib in Resources */,
@@ -401,6 +441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7366FD18CA45D0004E97E6 /* SuccessView.xib in Resources */,
 				BBEB8BDE18BD12D50085FA78 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7366F518CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */,
 				BBE3E14118C511C4008857F8 /* AFURLSessionManager.m in Sources */,
 				BBE3E13E18C511C4008857F8 /* AFURLConnectionOperation.m in Sources */,
 				BBE3E13918C511C4008857F8 /* AFHTTPRequestOperation.m in Sources */,
@@ -420,6 +462,7 @@
 				BBEB8C0018BD1B090085FA78 /* HAKLoginViewController.m in Sources */,
 				BBEB8BC318BD12D50085FA78 /* main.m in Sources */,
 				BBE3E13B18C511C4008857F8 /* AFHTTPSessionManager.m in Sources */,
+				BB7366F918CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */,
 				BBEB8BF818BD17AA0085FA78 /* HAKMainViewController.m in Sources */,
 				BBEB8BF418BD13B40085FA78 /* StarterApp.xcdatamodeld in Sources */,
 				BBE3E12318C51095008857F8 /* HAKNetwork.m in Sources */,
@@ -436,7 +479,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBEB8BE018BD12D50085FA78 /* StarterAppTests.m in Sources */,
+				BB7366FA18CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */,
+				BB7366FF18CA47B1004E97E6 /* HAKHelperMethodsTests.m in Sources */,
+				BB7366F618CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */,
+				BB73670518CA4BE0004E97E6 /* HAKNetworkTests.m in Sources */,
+				BB73670818CA684E004E97E6 /* HAKMockNetworkDelegate.m in Sources */,
+				BB73670318CA4B79004E97E6 /* HAKMockNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

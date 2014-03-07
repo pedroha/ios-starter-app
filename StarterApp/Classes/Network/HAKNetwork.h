@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HAKNetworkDelegate.h"
 
 @interface HAKNetwork : NSObject
 
-@property (assign,nonatomic) BOOL connectedToWifi;
-@property (assign,nonatomic) BOOL connectedToInternet;
+
+@property (weak, nonatomic) id <HAKNetworkDelegate> delegate;
 
 
 -(void)registerNewUserWithEmail:(NSString*)email password:(NSString*)password firstName:(NSString*)firstName lastName:(NSString*)lastName nickname:(NSString*)nickname;

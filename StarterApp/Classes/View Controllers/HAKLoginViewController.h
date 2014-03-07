@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAKNetworkDelegate.h"
 
-@interface HAKLoginViewController : UIViewController
+@interface HAKLoginViewController : UIViewController <HAKNetworkDelegate>
 
 
 

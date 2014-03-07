@@ -7,16 +7,21 @@
 //
 
 
-#define kRegisterNewUserComplete @"registerNewUserComplete"
-#define kRegisterNewUserError @"registerNewUserError"
-
-#define kLoginUserComplete @"loginUserComplete"
-#define kLoginUserError @"loginUserError"
-
-#define kForgotPasswordComplete @"forgotPasswordComplete"
-#define kForgotPasswordError @"forgotPasswordError"
-
-#define kUpdateUserInfoComplete @"updateUserInfoComplete"
-#define kUpdateUserInfoError @"updateUserInfoError"
+#define kBaseURLAddress @"http://localhost:8080/"
+#define kHAKNetworkErrorDomain @"HAKNetworkErrorDomain"
 
 
+#define kRegisterNewUser @"registerNewUser"
+
+#define kLoginUser @"loginUser"
+
+#define kForgotPassword @"forgotPassword"
+
+#define kUpdateUserInfo @"updateUserInfo"
+
+
+typedef enum HAKNetworkErrors{
+    HAKResponseObjectNotDictionary = 1000,
+    HAKResponseObjectDoesNotHaveStatusCode
+    
+} HAKNetworkError;

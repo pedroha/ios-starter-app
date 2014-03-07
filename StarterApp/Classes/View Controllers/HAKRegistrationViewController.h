@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAKNetworkDelegate.h"
 
-@interface HAKRegistrationViewController : UIViewController
-
+@interface HAKRegistrationViewController : UIViewController <HAKNetworkDelegate>
 
 -(void)doneAnimating;
 

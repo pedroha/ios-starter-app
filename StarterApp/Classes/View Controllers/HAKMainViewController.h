@@ -7,17 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HAKNetwork;
+@class HAKNetworkReachabiltiy;
 
 
 @interface HAKMainViewController : UIViewController
 
-@property (strong,nonatomic) HAKNetwork *network;
+@property (strong,nonatomic) HAKNetworkReachabiltiy *reachability;
 
 
 +(HAKMainViewController*) sharedInstance;
 
 -(void)animateToRegistrationView;
 -(void)animateToLoginView;
+-(void)animateToSuccessViewFromView:(UIView*)view;
 
 @end
