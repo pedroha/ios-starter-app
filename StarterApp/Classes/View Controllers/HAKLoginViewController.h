@@ -11,6 +11,6 @@
 
 @interface HAKLoginViewController : UIViewController <HAKNetworkDelegate>
 
-
+-(id)initWithNib;
 
 @end

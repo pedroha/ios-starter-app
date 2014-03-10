@@ -1,5 +1,5 @@
 //
-//  HAKSuccessViewController.h
+//  HAKViewController.h
 //  StarterApp
 //
 //  Created by Grace on 3/7/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HAKSuccessViewController : UIViewController
-
-
+@interface HAKViewController : UIViewController
 
 @end

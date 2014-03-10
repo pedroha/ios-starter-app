@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB4514FE18CE405C00943C19 /* HAKFakeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4514FD18CE405C00943C19 /* HAKFakeAlertView.m */; };
+		BB45150118CE468400943C19 /* HAKMockMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45150018CE468400943C19 /* HAKMockMainViewController.m */; };
 		BB7366F518CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */; };
 		BB7366F618CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */; };
 		BB7366F918CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F818CA45B9004E97E6 /* HAKSuccessViewController.m */; };
@@ -17,6 +19,7 @@
 		BB73670318CA4B79004E97E6 /* HAKMockNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670218CA4B79004E97E6 /* HAKMockNetwork.m */; };
 		BB73670518CA4BE0004E97E6 /* HAKNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670418CA4BE0004E97E6 /* HAKNetworkTests.m */; };
 		BB73670818CA684E004E97E6 /* HAKMockNetworkDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670718CA684E004E97E6 /* HAKMockNetworkDelegate.m */; };
+		BB73670D18CA74AF004E97E6 /* HAKRegistrationViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB73670C18CA74AF004E97E6 /* HAKRegistrationViewControllerTests.m */; };
 		BBE3E12318C51095008857F8 /* HAKNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE3E12218C51095008857F8 /* HAKNetwork.m */; };
 		BBE3E13918C511C4008857F8 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE3E12718C511C4008857F8 /* AFHTTPRequestOperation.m */; };
 		BBE3E13A18C511C4008857F8 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE3E12918C511C4008857F8 /* AFHTTPRequestOperationManager.m */; };
@@ -62,6 +65,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB4514FC18CE405C00943C19 /* HAKFakeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAKFakeAlertView.h; sourceTree = "<group>"; };
+		BB4514FD18CE405C00943C19 /* HAKFakeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKFakeAlertView.m; sourceTree = "<group>"; };
+		BB4514FF18CE468400943C19 /* HAKMockMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAKMockMainViewController.h; sourceTree = "<group>"; };
+		BB45150018CE468400943C19 /* HAKMockMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKMockMainViewController.m; sourceTree = "<group>"; };
 		BB7366EF18CA3355004E97E6 /* HAKNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkDelegate.h; path = Classes/Network/HAKNetworkDelegate.h; sourceTree = "<group>"; };
 		BB7366F318CA36C9004E97E6 /* HAKNetworkReachabiltiy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkReachabiltiy.h; path = Classes/Network/HAKNetworkReachabiltiy.h; sourceTree = "<group>"; };
 		BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKNetworkReachabiltiy.m; path = Classes/Network/HAKNetworkReachabiltiy.m; sourceTree = "<group>"; };
@@ -74,6 +81,7 @@
 		BB73670418CA4BE0004E97E6 /* HAKNetworkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKNetworkTests.m; sourceTree = "<group>"; };
 		BB73670618CA684E004E97E6 /* HAKMockNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAKMockNetworkDelegate.h; sourceTree = "<group>"; };
 		BB73670718CA684E004E97E6 /* HAKMockNetworkDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKMockNetworkDelegate.m; sourceTree = "<group>"; };
+		BB73670C18CA74AF004E97E6 /* HAKRegistrationViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKRegistrationViewControllerTests.m; sourceTree = "<group>"; };
 		BBE3E12118C51095008857F8 /* HAKNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetwork.h; path = Classes/Network/HAKNetwork.h; sourceTree = "<group>"; };
 		BBE3E12218C51095008857F8 /* HAKNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKNetwork.m; path = Classes/Network/HAKNetwork.m; sourceTree = "<group>"; };
 		BBE3E12618C511C4008857F8 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -160,6 +168,10 @@
 				BB73670218CA4B79004E97E6 /* HAKMockNetwork.m */,
 				BB73670618CA684E004E97E6 /* HAKMockNetworkDelegate.h */,
 				BB73670718CA684E004E97E6 /* HAKMockNetworkDelegate.m */,
+				BB4514FC18CE405C00943C19 /* HAKFakeAlertView.h */,
+				BB4514FD18CE405C00943C19 /* HAKFakeAlertView.m */,
+				BB4514FF18CE468400943C19 /* HAKMockMainViewController.h */,
+				BB45150018CE468400943C19 /* HAKMockMainViewController.m */,
 			);
 			name = "Mocks and Fakes";
 			sourceTree = "<group>";
@@ -283,6 +295,7 @@
 				BBEB8BDA18BD12D50085FA78 /* Supporting Files */,
 				BB7366FE18CA47B1004E97E6 /* HAKHelperMethodsTests.m */,
 				BB73670418CA4BE0004E97E6 /* HAKNetworkTests.m */,
+				BB73670C18CA74AF004E97E6 /* HAKRegistrationViewControllerTests.m */,
 			);
 			path = StarterAppTests;
 			sourceTree = "<group>";
@@ -482,9 +495,12 @@
 				BB7366FA18CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */,
 				BB7366FF18CA47B1004E97E6 /* HAKHelperMethodsTests.m in Sources */,
 				BB7366F618CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */,
+				BB45150118CE468400943C19 /* HAKMockMainViewController.m in Sources */,
+				BB4514FE18CE405C00943C19 /* HAKFakeAlertView.m in Sources */,
 				BB73670518CA4BE0004E97E6 /* HAKNetworkTests.m in Sources */,
 				BB73670818CA684E004E97E6 /* HAKMockNetworkDelegate.m in Sources */,
 				BB73670318CA4B79004E97E6 /* HAKMockNetwork.m in Sources */,
+				BB73670D18CA74AF004E97E6 /* HAKRegistrationViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

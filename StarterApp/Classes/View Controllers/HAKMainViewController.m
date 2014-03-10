@@ -27,7 +27,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    self.reachability = [[HAKNetworkReachabiltiy alloc] init];
+    //Uncomment the following line if you need to monitor network access
+    //self.reachability = [[HAKNetworkReachabiltiy alloc] init];
     
 	self.loginViewController = [[HAKLoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
     [self.view addSubview:self.loginViewController.view];
@@ -50,7 +51,7 @@
 #pragma mark - View Controllers
 
 -(void)animateToRegistrationView{
-    if(self.registrationViewController == nil) self.registrationViewController = [[HAKRegistrationViewController alloc] initWithNibName:@"RegistrationView" bundle:nil];
+    if(self.registrationViewController == nil) self.registrationViewController = [[HAKRegistrationViewController alloc] initWithNib];
     
     [self.view addSubview:self.registrationViewController.view];
     
@@ -66,7 +67,7 @@
 }
 
 -(void)animateToLoginView{
-    if(self.loginViewController == nil) self.loginViewController = [[HAKLoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
+    if(self.loginViewController == nil) self.loginViewController = [[HAKLoginViewController alloc] initWithNib];
     
     [self.view addSubview:self.loginViewController.view];
     

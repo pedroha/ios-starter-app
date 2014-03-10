@@ -13,34 +13,26 @@
 
 @interface HAKRegistrationViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordVerifyField;
-@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
-@property (weak, nonatomic) IBOutlet UITextField *nicknameField;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
-
 @property (strong,nonatomic) HAKNetwork *network;
-
-- (IBAction)onBackPress:(UIButton *)sender;
-- (IBAction)onRegisterPress:(UIButton *)sender;
-- (IBAction)backgroundTap:(UIControl *)sender;
-- (IBAction)textFieldDoneEditing:(UITextField *)sender;
-
 
 @end
 
 
-
+//NSBundle bundleForClass:[MyViewController class]]
 
 @implementation HAKRegistrationViewController
 
-- (void)viewDidLoad{
+-(id)initWithNib{
+    if (self = [super initWithNibName:@"RegistrationView" bundle:nil]) {
+        self.network = [[HAKNetwork alloc] init];
+    }
+    return self;
+}
+
+
+-(void)viewDidLoad{
     [super viewDidLoad];
-	
 	for(UIButton *button in self.buttonCollection) button.layer.cornerRadius = 16;
-    self.network = [[HAKNetwork alloc] init];
 }
 -(void)doneAnimating{
     [self.emailField becomeFirstResponder];
@@ -113,7 +105,7 @@
     if(code == 200){
         [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
     }else{
-        [HAKHelperMethods showAlert:@"Error" withMessage:responseDictionary[@"error"][@"message"]];
+        [HAKHelperMethods showAlert:@"Error" withMessage:responseDictionary[@"message"]];
     }
 }
 -(void)networkFailure:(NSString *)name error:(NSError *)error{

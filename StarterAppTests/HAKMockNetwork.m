@@ -17,4 +17,11 @@
 }
 
 
+-(void)registerNewUserWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName lastName:(NSString *)lastName nickname:(NSString *)nickname{
+    [super registerNewUserWithEmail:email password:password firstName:firstName lastName:lastName nickname:nickname];
+    self.registerNewUserCalled = YES;
+}
+
+
+
 @end

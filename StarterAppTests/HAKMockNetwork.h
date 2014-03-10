@@ -22,5 +22,6 @@
 @property (strong,nonatomic) NSDictionary *parameters;
 
 
+@property BOOL registerNewUserCalled;
 
 @end

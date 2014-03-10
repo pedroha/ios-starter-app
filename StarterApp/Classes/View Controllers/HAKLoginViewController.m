@@ -33,6 +33,12 @@
 
 @implementation HAKLoginViewController
 
+-(id)initWithNib{
+    if (self = [super initWithNibName:@"LoginView" bundle:nil]) {
+        self.network = [[HAKNetwork alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
