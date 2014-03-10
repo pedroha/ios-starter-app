@@ -23,5 +23,6 @@
 
 
 @property BOOL registerNewUserCalled;
-
+@property BOOL loginCalled;
+@property BOOL forgotPasswordCalled;
 @end

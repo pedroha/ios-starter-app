@@ -11,15 +11,20 @@
 #import "HAKMockNetwork.h"
 #import "HAKNotificationConstants.h"
 #import "HAKFakeAlertView.h"
-#import "HAKMockMainViewController.h"
-
-
+#import "HAKSuccessViewController.h"
+#import "HAKMainViewController.h"
+#import "HAKLoginViewController.h"
 
 
 @interface HAKRegistrationViewController ()
 @property (strong,nonatomic) HAKNetwork *network;
 @end
 
+@interface HAKMainViewController()
+@property (strong,nonatomic) HAKLoginViewController *loginViewController;
+@property (strong,nonatomic) HAKRegistrationViewController *registrationViewController;
+@property (strong,nonatomic) HAKSuccessViewController *successViewController;
+@end
 
 
 
@@ -27,7 +32,6 @@
 @property HAKRegistrationViewController *registrationViewController;
 @property HAKMockNetwork *network;
 @property HAKFakeAlertView *fakeAlert;
-@property HAKMockMainViewController *mainController;
 @end
 
 @implementation HAKRegistrationViewControllerTests
@@ -39,17 +43,16 @@
     [self.registrationViewController view];
     self.network = [[HAKMockNetwork alloc] init];
     self.registrationViewController.network = self.network;
+    self.network.registerNewUserCalled = NO;
     
     self.fakeAlert = [HAKFakeAlertView sharedInstance];
     self.fakeAlert.alertHasBeenShown = NO;
-    
-    self.mainController = (HAKMockMainViewController*)[HAKMainViewController sharedInstance];
-    self.mainController.animateToSuccessViewCalled = NO;
-    
 }
 
 - (void)tearDown{
     self.registrationViewController = nil;
+    self.network = nil;
+    self.fakeAlert = nil;
     [super tearDown];
 }
 
@@ -63,6 +66,10 @@
     XCTAssertNotNil(self.registrationViewController.lastNameField, @"The view controller should have a last-name field");
     XCTAssertNotNil(self.registrationViewController.nicknameField, @"The view controller should have a nickname field");
 }
+
+
+
+#pragma mark - User Input
 
 -(void)testBadInputDoesNotMakeNetworkCall{
     UIButton *fakeButton = [[UIButton alloc] init];
@@ -94,7 +101,41 @@
     [self.registrationViewController onRegisterPress:fakeButton];
     XCTAssertTrue(self.network.registerNewUserCalled, @"Network methods should be invoked if the user enters the text fields correctly");
 }
+-(void)testBadEmailInputShowsAlert{
+    UIButton *fakeButton = [[UIButton alloc] init];
+    
+    self.registrationViewController.emailField.text = @"not a real email address";
+    self.registrationViewController.passwordField.text = @"12345";
+    self.registrationViewController.passwordVerifyField.text = @"12345";
+    [self.registrationViewController onRegisterPress:fakeButton];
+    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"An alert should be shown if the user enters the text fields incorrectly");
+}
+-(void)testBadPasswordInputShowsAlert{
+    UIButton *fakeButton = [[UIButton alloc] init];
+    
+    self.registrationViewController.emailField.text = @"realEmail@gmail.com";
+    self.registrationViewController.passwordField.text = @"a";
+    self.registrationViewController.passwordVerifyField.text = @"a";
+    [self.registrationViewController onRegisterPress:fakeButton];
+    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"An alert should be shown if the user enters the text fields incorrectly");
+}
+-(void)testNonMatchingPasswordInputShowsAlert{
+    UIButton *fakeButton = [[UIButton alloc] init];
+    
+    self.registrationViewController.emailField.text = @"realEmail@gmail.com";
+    self.registrationViewController.passwordField.text = @"alohomora!";
+    self.registrationViewController.passwordVerifyField.text = @"aloha";
+    [self.registrationViewController onRegisterPress:fakeButton];
+    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"An alert should be shown if the user enters the text fields incorrectly");
+}
 
+
+
+
+
+
+
+#pragma mark - Network Response
 
 -(void)testNetworkFailureShowsAlertView{
     NSError *error = nil;
@@ -119,7 +160,8 @@
     NSDictionary *response = @{@"code":@"200",
                                @"message":@"Ok"};
     [self.registrationViewController networkSuccess:kRegisterNewUser responseDictionary:response];
-    XCTAssertTrue(self.mainController.animateToSuccessViewCalled, @"A network-success response should animate to the success view");
+    
+    XCTAssertNotNil([[HAKMainViewController sharedInstance].successViewController.view superview], @"The success view should be added after successful registration");
 }
 
 

@@ -13,20 +13,12 @@
 #import "HAKNotificationConstants.h"
 
 @interface HAKLoginViewController ()
-
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
-
 @property (strong,nonatomic) HAKNetwork *network;
 
-- (IBAction)onLoginPress:(UIButton *)sender;
-- (IBAction)onRegisterPress:(UIButton *)sender;
-- (IBAction)onForgotPasswordPress:(UIButton *)sender;
 - (IBAction)backgroundTap:(UIControl *)sender;
 - (IBAction)emailFieldDoneEditing:(UITextField *)sender;
 - (IBAction)passwordFieldDoneEditing:(UITextField *)sender;
-
 @end
 
 
@@ -145,7 +137,7 @@
     if(code == 200){
         [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
     }else{
-        [HAKHelperMethods showAlert:@"Error" withMessage:dict[@"error"][@"message"]];
+        [HAKHelperMethods showAlert:@"Error" withMessage:dict[@"message"]];
     }
 }
 -(void)loginError{
@@ -159,7 +151,7 @@
     if(code == 200){
         [HAKHelperMethods showAlert:nil withMessage:[NSString stringWithFormat:@"An email has been sent to %@",self.emailField.text]];
     }else{
-        [HAKHelperMethods showAlert:@"Error" withMessage:dict[@"error"][@"message"]];
+        [HAKHelperMethods showAlert:@"Error" withMessage:dict[@"message"]];
     }
 }
 -(void)forgotPasswordError{

@@ -22,6 +22,13 @@
     self.registerNewUserCalled = YES;
 }
 
+-(void)loginUserWithEmail:(NSString *)email andPassword:(NSString *)password{
+    [super loginUserWithEmail:email andPassword:password];
+    self.loginCalled = YES;
+}
 
-
+-(void)userForgotPassword:(NSString *)email{
+    [super userForgotPassword:email];
+    self.forgotPasswordCalled = YES;
+}
 @end

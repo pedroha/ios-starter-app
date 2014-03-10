@@ -11,6 +11,14 @@
 
 @interface HAKLoginViewController : UIViewController <HAKNetworkDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+
 -(id)initWithNib;
+
+- (IBAction)onLoginPress:(UIButton *)sender;
+- (IBAction)onRegisterPress:(UIButton *)sender;
+- (IBAction)onForgotPasswordPress:(UIButton *)sender;
 
 @end

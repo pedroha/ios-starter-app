@@ -32,8 +32,11 @@
 	return SharedInstance;
 }
 +(void)load{
-    Method originalAlertMethod = class_getInstanceMethod([UIAlertView class], @selector(show));
-    Method swappedMethod = class_getInstanceMethod([UIAlertView class], @selector(showForUnitTest));
-    method_exchangeImplementations(originalAlertMethod, swappedMethod);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method originalAlertMethod = class_getInstanceMethod([UIAlertView class], @selector(show));
+        Method swappedMethod = class_getInstanceMethod([UIAlertView class], @selector(showForUnitTest));
+        method_exchangeImplementations(originalAlertMethod, swappedMethod);
+    });
 }
 @end
