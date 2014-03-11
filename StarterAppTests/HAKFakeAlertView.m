@@ -9,6 +9,8 @@
 #import "HAKFakeAlertView.h"
 #import <objc/runtime.h>
 
+
+/*
 @interface UIAlertView (HAKUnitTests)
 -(void)showForUnitTest;
 @end
@@ -19,7 +21,7 @@
 }
 
 @end
-
+*/
 
 
 @implementation HAKFakeAlertView
@@ -31,6 +33,13 @@
 	});
 	return SharedInstance;
 }
+
+
+
+/*
+ All the alert calls are currently going through HAKHelperMethods.
+ If this changes, reinstate method swizzling here to test UIAlertView.
+ 
 +(void)load{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -39,4 +48,7 @@
         method_exchangeImplementations(originalAlertMethod, swappedMethod);
     });
 }
+ */
+
+
 @end

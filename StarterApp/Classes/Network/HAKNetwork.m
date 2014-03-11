@@ -67,34 +67,33 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self postSuccessWithResponseObject:responseObject forName:name];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //DebugLog(@"Network Failure.  Error = %@  \nResponse = %@",error,operation.responseObject);
-        [self postFailureWithError:error forName:name];
+        [self postFailureWithError:error forName:name forStatusCode:operation.response.statusCode withResponseObject:operation.responseObject];
     }];
  
 }
 -(void)postSuccessWithResponseObject:(id)responseObject forName:(NSString*)name{
-    if(![responseObject isKindOfClass:[NSDictionary class]]){
-        NSError *error = [NSError errorWithDomain:kHAKNetworkErrorDomain code:HAKResponseObjectNotDictionary userInfo:nil];
-        [self.delegate networkFailure:name error:error];
-        return;
-    }
+    if([self postErrorIfResponseObjectIsNotDictionary:responseObject forName:name]) return;
     NSDictionary *dict = (NSDictionary*)responseObject;
-    if(dict[@"code"] == nil){
-        NSError *error = [NSError errorWithDomain:kHAKNetworkErrorDomain code:HAKResponseObjectDoesNotHaveStatusCode userInfo:nil];
-        [self.delegate networkFailure:name error:error];
-        return;
-    }
-    
+
     [self.delegate networkSuccess:name responseDictionary:dict];
 }
--(void)postFailureWithError:(NSError*)error forName:(NSString*)name{
-    [self.delegate networkFailure:name error:error];
+-(void)postFailureWithError:(NSError*)error forName:(NSString*)name forStatusCode:(int)statusCode withResponseObject:(id)responseObject{
+    if([self postErrorIfResponseObjectIsNotDictionary:responseObject forName:name]) return;
+    NSDictionary *dict = (NSDictionary*)responseObject;
+    [self.delegate networkFailure:name error:error statusCode:statusCode responseDictionary:dict];
 }
-
+-(BOOL)postErrorIfResponseObjectIsNotDictionary:(id)responseObject forName:(NSString*)name{
+    if(![responseObject isKindOfClass:[NSDictionary class]]){
+        NSError *error = [NSError errorWithDomain:kHAKNetworkErrorDomain code:HAKResponseObjectNotDictionary userInfo:nil];
+        [self.delegate networkFailure:name error:error statusCode:HAKResponseObjectNotDictionary responseDictionary:nil];
+        return YES;
+    }
+    return NO;
+}
 
 
 

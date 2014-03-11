@@ -14,6 +14,7 @@
 #import "HAKSuccessViewController.h"
 #import "HAKMainViewController.h"
 #import "HAKLoginViewController.h"
+#import "HAKMockHelperMethods.h"
 
 
 @interface HAKRegistrationViewController ()
@@ -28,10 +29,14 @@
 
 
 
+
+
 @interface HAKRegistrationViewControllerTests : XCTestCase
 @property HAKRegistrationViewController *registrationViewController;
 @property HAKMockNetwork *network;
 @property HAKFakeAlertView *fakeAlert;
+@property NSDictionary *fakeResponseDictionary;
+@property HAKMockHelperMethods *helper;
 @end
 
 @implementation HAKRegistrationViewControllerTests
@@ -47,12 +52,18 @@
     
     self.fakeAlert = [HAKFakeAlertView sharedInstance];
     self.fakeAlert.alertHasBeenShown = NO;
+    
+    self.helper = [HAKMockHelperMethods sharedInstance];
+    self.helper.messageShown = nil;
+    
+    self.fakeResponseDictionary = @{@"message":@"fake message"};
 }
 
 - (void)tearDown{
     self.registrationViewController = nil;
     self.network = nil;
     self.fakeAlert = nil;
+    self.helper = nil;
     [super tearDown];
 }
 
@@ -137,25 +148,6 @@
 
 #pragma mark - Network Response
 
--(void)testNetworkFailureShowsAlertView{
-    NSError *error = nil;
-    [self.registrationViewController networkFailure:kRegisterNewUser error:error];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"A network failure should invoke an alert");
-}
-
--(void)testBadRequestConditionShowsAlertView{
-    NSDictionary *response = @{@"code":@"400",
-                               @"message":@"Bad request"};
-    [self.registrationViewController networkSuccess:kRegisterNewUser responseDictionary:response];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"A bad request should invoke an alert");
-}
--(void)testUserAlreadyExistsConditionShowsAlertView{
-    NSDictionary *response = @{@"code":@"401",
-                               @"message":@"User already exists"};
-    [self.registrationViewController networkSuccess:kRegisterNewUser responseDictionary:response];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"The condition of the user already existing should invoke an alert");
-}
-
 -(void)testGoodRequestGoesToSuccessView{
     NSDictionary *response = @{@"code":@"200",
                                @"message":@"Ok"};
@@ -165,6 +157,20 @@
 }
 
 
+
+
+-(void)testStatusCode400ShowsDefaultAlertMessage{
+    [self.registrationViewController networkFailure:kRegisterNewUser error:nil statusCode:400 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageRegisterDefaultErrorMessage, @"Status code 400 should show default alert message");
+}
+-(void)testStatusCode404ShowsDefaultAlertMessage{
+    [self.registrationViewController networkFailure:kRegisterNewUser error:nil statusCode:404 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageRegisterDefaultErrorMessage, @"Status code 400 should show default alert message");
+}
+-(void)testStatusCode401ShowsUserAlreadyExistsMessage{
+    [self.registrationViewController networkFailure:kRegisterNewUser error:nil statusCode:401 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageRegisterUserAlreadyExists, @"Status code 401 should show custom message");
+}
 
 
 

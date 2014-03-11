@@ -11,7 +11,7 @@
 @interface HAKNetwork ()
 // normally called when AFNetworking receives response from network
 -(void)postSuccessWithResponseObject:(id)responseObject forName:(NSString*)name;
--(void)postFailureWithError:(NSError*)error forName:(NSString*)name;
+-(void)postFailureWithError:(NSError*)error forName:(NSString*)name forStatusCode:(int)statusCode withResponseObject:(id)responseObject;
 @end
 
 

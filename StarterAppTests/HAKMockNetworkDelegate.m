@@ -17,7 +17,7 @@
 }
 
 
--(void)networkFailure:(NSString *)name error:(NSError *)error{
+-(void)networkFailure:(NSString *)name error:(NSError *)error statusCode:(int)statusCode responseDictionary:(NSDictionary *)responseDictionary{
     self.networkError = error;
     self.failureCalled = YES;
 }

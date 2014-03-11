@@ -14,6 +14,7 @@
 #import "HAKSuccessViewController.h"
 #import "HAKMainViewController.h"
 #import "HAKLoginViewController.h"
+#import "HAKMockHelperMethods.h"
 
 
 
@@ -34,6 +35,8 @@
 @property HAKMockNetwork *network;
 @property HAKFakeAlertView *fakeAlert;
 @property UIButton *fakeButton;
+@property NSDictionary *fakeResponseDictionary;
+@property HAKMockHelperMethods *helper;
 @end
 
 @implementation HAKLoginViewControllerTests
@@ -51,12 +54,18 @@
     self.fakeAlert.alertHasBeenShown = NO;
     
     self.fakeButton = [[UIButton alloc] init];
+    self.fakeResponseDictionary = @{@"message":@"fake message"};
+    
+    self.helper = [HAKMockHelperMethods sharedInstance];
+    self.helper.messageShown = nil;
 }
 
 - (void)tearDown{
     self.loginViewController = nil;
     self.network = nil;
     self.fakeAlert = nil;
+    self.fakeResponseDictionary = nil;
+    self.helper = nil;
     [super tearDown];
 }
 
@@ -84,6 +93,7 @@
     [self.loginViewController onForgotPasswordPress:self.fakeButton];
     XCTAssertFalse(self.network.forgotPasswordCalled, @"Network methods should not be invoked if the user enters the text fields incorrectly");
 }
+
 -(void)testLoginBadEmailInputShowsAlert{
     self.loginViewController.emailField.text = @"not email";
     self.loginViewController.passwordField.text = @"12345";
@@ -123,51 +133,52 @@
 
 
 
-#pragma mark - Network Response
-
--(void)testNetworkFailureShowsAlertView{
-    NSError *error = nil;
-    [self.loginViewController networkFailure:kLoginUser error:error];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"A network failure should invoke an alert");
-    
-    [self.loginViewController networkFailure:kForgotPassword error:error];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"A network failure should invoke an alert");
-}
-
--(void)testLoginBadRequestConditionShowsAlertView{
-    NSDictionary *response = @{@"code":@"400",
-                               @"message":@"Bad request"};
-    [self.loginViewController networkSuccess:kLoginUser responseDictionary:response];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"A bad request should invoke an alert");
-}
--(void)testLoginWrongPasswordConditionShowsAlertView{
-    NSDictionary *response = @{@"code":@"402",
-                               @"message":@"Wrong password"};
-    [self.loginViewController networkSuccess:kLoginUser responseDictionary:response];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"The condition of the user already existing should invoke an alert");
-}
-
--(void)testForgotPasswordBadRequestConditionShowsAlertView{
-    NSDictionary *response = @{@"code":@"400",
-                               @"message":@"Bad request"};
-    [self.loginViewController networkSuccess:kForgotPassword responseDictionary:response];
-    XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"A bad request should invoke an alert");
-}
-
+#pragma mark - Network Response Success
 
 -(void)testLoginGoodRequestGoesToSuccessView{
-    NSDictionary *response = @{@"code":@"200",
-                               @"message":@"Ok"};
-    [self.loginViewController networkSuccess:kLoginUser responseDictionary:response];
-    
+    [self.loginViewController networkSuccess:kLoginUser responseDictionary:self.fakeResponseDictionary];
     XCTAssertNotNil([[HAKMainViewController sharedInstance].successViewController.view superview], @"The success view should be added after successful login");
 }
 -(void)testForgotPasswordGoodRequestShowsSuccessAlert{
-    NSDictionary *response = @{@"code":@"200",
-                               @"message":@"Ok"};
-    [self.loginViewController networkSuccess:kForgotPassword responseDictionary:response];
+    [self.loginViewController networkSuccess:kForgotPassword responseDictionary:self.fakeResponseDictionary];
     XCTAssertTrue(self.fakeAlert.alertHasBeenShown, @"An alert showing the user to check email should be shown");
 }
+
+
+
+#pragma mark - Network Response Error
+
+-(void)testLoginStatusCode400ShowsDefaultAlertMessage{
+    [self.loginViewController networkFailure:kLoginUser error:nil statusCode:400 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageLoginDefaultErrorMessage, @"Status code 400 should show default message");
+}
+-(void)testLoginStatusCode404ShowsDefaultAlertMessage{
+    [self.loginViewController networkFailure:kLoginUser error:nil statusCode:404 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageLoginDefaultErrorMessage, @"Status code 404 should show default message");
+}
+-(void)testLoginStatusCode402ShowsUserDoesntExistMessage{
+    [self.loginViewController networkFailure:kLoginUser error:nil statusCode:402 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageLoginUserDoesntExist, @"Status code 402 should show custom message");
+}
+-(void)testLoginStatusCode403ShowsPasswordIncorrectMessage{
+    [self.loginViewController networkFailure:kLoginUser error:nil statusCode:403 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageLoginPasswordIsIncorrect, @"Status code 403 should show custom message");
+}
+
+
+-(void)testForgotPasswordCode400ShowsDefaultAlertMessage{
+    [self.loginViewController networkFailure:kForgotPassword error:nil statusCode:400 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageForgotPasswordDefaultErrorMessage, @"Status code 400 should show default message");
+}
+-(void)testForgotPasswordCode404ShowsDefaultAlertMessage{
+    [self.loginViewController networkFailure:kForgotPassword error:nil statusCode:404 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageForgotPasswordDefaultErrorMessage, @"Status code 400 should show default message");
+}
+-(void)testForgotPasswordCode402ShowsUserDoesntExistMessage{
+    [self.loginViewController networkFailure:kForgotPassword error:nil statusCode:402 responseDictionary:self.fakeResponseDictionary];
+    XCTAssertEqualObjects(self.helper.messageShown, kMessageForgotPasswordUserDoesntExist, @"Status code 402 should show custom message");
+}
+
 
 
 

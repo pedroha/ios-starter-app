@@ -10,6 +10,7 @@
 #import "HAKMainViewController.h"
 #import "HAKHelperMethods.h"
 #import "HAKNetwork.h"
+#import "HAKNotificationConstants.h"
 
 @interface HAKRegistrationViewController ()
 
@@ -24,7 +25,8 @@
 
 -(id)initWithNib{
     if (self = [super initWithNibName:@"RegistrationView" bundle:nil]) {
-        self.network = [[HAKNetwork alloc] init];
+        _network = [[HAKNetwork alloc] init];
+        _network.delegate = self;
     }
     return self;
 }
@@ -100,16 +102,15 @@
 #pragma mark - Network Delegate Methods
 
 -(void)networkSuccess:(NSString *)name responseDictionary:(NSDictionary *)responseDictionary{
-    NSString *statusString = responseDictionary[@"code"];
-    NSInteger code = [statusString integerValue];
-    if(code == 200){
-        [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
-    }else{
-        [HAKHelperMethods showAlert:@"Error" withMessage:responseDictionary[@"message"]];
-    }
+    [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
 }
--(void)networkFailure:(NSString *)name error:(NSError *)error{
-    [HAKHelperMethods showAlert:@"Network error" withMessage:@"We're sorry, registration could not be completed."];
+-(void)networkFailure:(NSString *)name error:(NSError *)error statusCode:(int)statusCode responseDictionary:(NSDictionary *)responseDictionary{
+    if(statusCode == 401){
+        [HAKHelperMethods showAlert:@"Error" withMessage:kMessageRegisterUserAlreadyExists];
+    }else{
+        [HAKHelperMethods showAlert:@"Network error" withMessage:kMessageRegisterDefaultErrorMessage];
+    }
+    
     // If there's an option to use the app without logging in, put that here.
 }
 

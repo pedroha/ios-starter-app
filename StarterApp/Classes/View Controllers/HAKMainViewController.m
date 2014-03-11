@@ -30,7 +30,7 @@
     //Uncomment the following line if you need to monitor network access
     //self.reachability = [[HAKNetworkReachabiltiy alloc] init];
     
-	self.loginViewController = [[HAKLoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
+	self.loginViewController = [[HAKLoginViewController alloc] initWithNib];
     [self.view addSubview:self.loginViewController.view];
 }
 

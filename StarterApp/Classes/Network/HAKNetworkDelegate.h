@@ -12,7 +12,7 @@
 
 -(void)networkSuccess:(NSString*)name responseDictionary:(NSDictionary*)responseDictionary;
 
--(void)networkFailure:(NSString*)name error:(NSError*)error;
+-(void)networkFailure:(NSString*)name error:(NSError*)error statusCode:(int)statusCode responseDictionary:(NSDictionary*)responseDictionary;
 
 
 

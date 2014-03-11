@@ -94,13 +94,7 @@
     XCTAssertFalse(self.networkDelegate.successCalled, @"Non-JSON should not invoke a success-handler on the delegate");
     XCTAssertEqual(HAKResponseObjectNotDictionary, self.networkDelegate.networkError.code, @"The error sent should be HAKResponseObjectNotDictionary");
 }
--(void)testNetworkSuccessReturningJSONWithNoStatusCodeInvokesErrorMethodOnDelegate{
-    NSDictionary *responseObject = @{@"user":@"Paul"};
-    [self.network postSuccessWithResponseObject:responseObject forName:kLoginUser];
-    XCTAssertTrue(self.networkDelegate.failureCalled, @"JSON without a status code should invoke a failure-handler method on the delegate");
-    XCTAssertFalse(self.networkDelegate.successCalled, @"JSON without a status code should not invoke a success-handler on the delegate");
-    XCTAssertEqual(HAKResponseObjectDoesNotHaveStatusCode, self.networkDelegate.networkError.code, @"The error sent should be HAKResponseObjectDoesNotHaveStatusCode");
-}
+
 -(void)testNetworkSuccessWithJSONWithStatusCodeInvokesSuccessMethodOnDelegate{
     NSDictionary *responseObject = @{@"code":@"200"};
     [self.network postSuccessWithResponseObject:responseObject forName:kLoginUser];
@@ -111,7 +105,7 @@
 
 -(void)testNetworkErrorInvokesErrorMethodOnDelegate{
     NSError *error = [NSError errorWithDomain:kHAKNetworkErrorDomain code:1 userInfo:nil];
-    [self.network postFailureWithError:error forName:kLoginUser];
+    [self.network postFailureWithError:error forName:kLoginUser forStatusCode:400 withResponseObject:@{@"message":@"something"}];
     XCTAssertTrue(self.networkDelegate.failureCalled, @"A network error should invoke a failure-handler method on the delegate");
     XCTAssertFalse(self.networkDelegate.successCalled, @"A network error should not invoke a success-handler on the delegate");
 }

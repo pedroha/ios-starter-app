@@ -27,14 +27,14 @@
 
 -(id)initWithNib{
     if (self = [super initWithNibName:@"LoginView" bundle:nil]) {
-        self.network = [[HAKNetwork alloc] init];
+        _network = [[HAKNetwork alloc] init];
+        _network.delegate = self;
     }
     return self;
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.network = [[HAKNetwork alloc] init];
     
     //format buttons
 	for(UIButton *button in self.buttonCollection) button.layer.cornerRadius = 16;
@@ -117,11 +117,11 @@
         [self forgotPasswordSuccessful:responseDictionary];
     }
 }
--(void)networkFailure:(NSString *)name error:(NSError *)error{
+-(void)networkFailure:(NSString *)name error:(NSError *)error statusCode:(int)statusCode responseDictionary:(NSDictionary *)responseDictionary{
     if([name isEqualToString:kLoginUser]){
-        [self loginError];
+        [self loginErrorForStatusCode:statusCode responseDictionary:responseDictionary];
     }else if([name isEqualToString:kForgotPassword]){
-        [self forgotPasswordError];
+        [self forgotPasswordErrorForStatusCode:statusCode responseDictionary:responseDictionary];
     }
 }
 
@@ -132,30 +132,30 @@
 #pragma mark - Network Response
 
 -(void)loginSuccessful:(NSDictionary*)dict{
-    NSString *statusString = dict[@"code"];
-    NSInteger code = [statusString integerValue];
-    if(code == 200){
-        [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
-    }else{
-        [HAKHelperMethods showAlert:@"Error" withMessage:dict[@"message"]];
-    }
+    [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
 }
--(void)loginError{
-    [HAKHelperMethods showAlert:@"Network error" withMessage:@"We're sorry, log-in could not be completed."];
+-(void)loginErrorForStatusCode:(int)statusCode responseDictionary:(NSDictionary*)responseDictionary{
+    if(statusCode == 402){
+        [HAKHelperMethods showAlert:@"Login Error" withMessage:kMessageLoginUserDoesntExist];
+    }else if(statusCode == 403){
+        [HAKHelperMethods showAlert:@"Login Error" withMessage:kMessageLoginPasswordIsIncorrect];
+    }else{
+        [HAKHelperMethods showAlert:@"Login Error" withMessage:kMessageLoginDefaultErrorMessage];
+    }
+
     // If there's an option to use the app without logging in, put that here.
 }
 
 -(void)forgotPasswordSuccessful:(NSDictionary*)dict{
-    NSString *statusString = dict[@"code"];
-    NSInteger code = [statusString integerValue];
-    if(code == 200){
-        [HAKHelperMethods showAlert:nil withMessage:[NSString stringWithFormat:@"An email has been sent to %@",self.emailField.text]];
-    }else{
-        [HAKHelperMethods showAlert:@"Error" withMessage:dict[@"message"]];
-    }
+    [HAKHelperMethods showAlert:nil withMessage:[NSString stringWithFormat:@"An email has been sent to %@",self.emailField.text]];
 }
--(void)forgotPasswordError{
-    [HAKHelperMethods showAlert:@"Network error" withMessage:@"We're sorry, this operation could not be completed."];
+-(void)forgotPasswordErrorForStatusCode:(int)statusCode responseDictionary:(NSDictionary*)responseDictionary{
+    if(statusCode == 402){
+        [HAKHelperMethods showAlert:@"Error" withMessage:kMessageForgotPasswordUserDoesntExist];
+    }else{
+        [HAKHelperMethods showAlert:@"Error" withMessage:kMessageForgotPasswordDefaultErrorMessage];
+    }
+
     // If there's an option to use the app without logging in, put that here.
 }
 
