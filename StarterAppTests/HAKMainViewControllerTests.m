@@ -40,18 +40,22 @@
 
 
 @interface HAKMainViewControllerTests : XCTestCase
-
+@property HAKMainViewController *mainVC;
 @end
 
 @implementation HAKMainViewControllerTests
 
 - (void)setUp{
     [super setUp];
-    
+    self.mainVC = [HAKMainViewController sharedInstance];
+    self.mainVC.loginViewController = [[HAKLoginViewController alloc] initWithNib];
+    [self.mainVC.view addSubview:self.mainVC.loginViewController.view];
+    self.mainVC.registrationViewController = nil;
+    self.mainVC.successViewController = nil;
 }
 
 - (void)tearDown{
-    
+    self.mainVC = nil;
     [super tearDown];
 }
 
@@ -67,21 +71,25 @@
 }
 
 -(void)testAnimateToRegistrationViewGoesToRegistrationView{
-    HAKMainViewController *mainView = [HAKMainViewController sharedInstance];
-    [mainView animateToRegistrationView];
-    XCTAssertNotNil([mainView.registrationViewController.view superview], @"The Registration View should be added when animating to it");
+    [self.mainVC animateToRegistrationView];
+    XCTAssertNotNil([self.mainVC.registrationViewController.view superview], @"The Registration View should be added when animating to it");
 }
 -(void)testAnimateToLoginViewGoesToLoginView{
-    HAKMainViewController *mainView = [HAKMainViewController sharedInstance];
-    [mainView animateToLoginView];
-    XCTAssertNotNil([mainView.loginViewController.view superview], @"The Registration View should be added when animating to it");
+    [self.mainVC animateToLoginView];
+    XCTAssertNotNil([self.mainVC.loginViewController.view superview], @"The Registration View should be added when animating to it");
 }
 -(void)testAnimateToSuccessViewGoesToSuccessView{
-    HAKMainViewController *mainView = [HAKMainViewController sharedInstance];
-    [mainView animateToSuccessViewFromView:mainView.registrationViewController.view];
-    XCTAssertNotNil([mainView.successViewController.view superview], @"The Registration View should be added when animating to it");
+    [self.mainVC animateToSuccessViewFromView:self.mainVC.registrationViewController.view];
+    XCTAssertNotNil([self.mainVC.successViewController.view superview], @"The Registration View should be added when animating to it");
 }
-
+-(void)testAnimateLogout{
+    self.mainVC.successViewController = [[HAKSuccessViewController alloc] initWithNibName:@"SuccessView" bundle:nil];
+    [self.mainVC.view addSubview:self.mainVC.successViewController.view];
+    [self.mainVC.loginViewController.view removeFromSuperview];
+    [self.mainVC animateLogout];
+    XCTAssertNotNil(self.mainVC.loginViewController, @"The login view controller should not be nil");
+    XCTAssertNotNil([self.mainVC.loginViewController.view superview], @"The view should be added");
+}
 
 
 

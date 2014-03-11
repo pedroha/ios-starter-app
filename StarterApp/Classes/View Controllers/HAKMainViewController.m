@@ -32,6 +32,7 @@
 #import "HAKSuccessViewController.h"
 #import "HAKAppDelegate.h"
 #import "HAKNetworkReachabiltiy.h"
+#import "HAKHelperMethods.h"
 
 @interface HAKMainViewController ()
 @property (strong,nonatomic) HAKLoginViewController *loginViewController;
@@ -49,9 +50,27 @@
     //Uncomment the following line if you need to monitor network access
     //self.reachability = [[HAKNetworkReachabiltiy alloc] init];
     
-	self.loginViewController = [[HAKLoginViewController alloc] initWithNib];
-    [self.view addSubview:self.loginViewController.view];
+    if([self isUserInfoSavedInKeychain]){
+        self.successViewController = [[HAKSuccessViewController alloc] initWithNibName:@"SuccessView" bundle:nil];
+        [self.view addSubview:self.successViewController.view];
+    }else{
+        self.loginViewController = [[HAKLoginViewController alloc] initWithNib];
+        [self.view addSubview:self.loginViewController.view];
+    }
+
 }
+
+-(BOOL)isUserInfoSavedInKeychain{
+    NSString *userName = [HAKHelperMethods getKeychainUsername];
+    NSString *userPassword = [HAKHelperMethods getKeychainPassword];
+    
+    if(userName.length > 0 && userPassword.length > 0){
+        return YES;
+    }
+    return NO;
+}
+
+
 
 
 +(HAKMainViewController*) sharedInstance{
@@ -113,6 +132,22 @@
                         [view removeFromSuperview];
                         self.registrationViewController = nil;
                         self.loginViewController = nil;
+                    }];
+}
+
+-(void)animateLogout{
+    [HAKHelperMethods resetKeychain];
+    
+    if(self.loginViewController == nil) self.loginViewController = [[HAKLoginViewController alloc] initWithNib];
+    [self.view addSubview:self.loginViewController.view];
+    
+    [UIView transitionFromView:self.successViewController.view
+                        toView:self.loginViewController.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    completion:^(BOOL finished) {
+                        [self.successViewController.view removeFromSuperview];
+                        self.successViewController = nil;
                     }];
 }
 

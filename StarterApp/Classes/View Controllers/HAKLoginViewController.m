@@ -48,6 +48,7 @@
     if (self = [super initWithNibName:@"LoginView" bundle:nil]) {
         _network = [[HAKNetwork alloc] init];
         _network.delegate = self;
+        _wantsToSaveUserInfo = YES;
     }
     return self;
 }
@@ -152,6 +153,10 @@
 
 -(void)loginSuccessful:(NSDictionary*)dict{
     [[HAKMainViewController sharedInstance] animateToSuccessViewFromView:self.view];
+    if(self.wantsToSaveUserInfo){
+        [HAKHelperMethods setKeychainUsername:self.emailField.text withPassword:self.passwordField.text];
+    }
+    
 }
 -(void)loginErrorForStatusCode:(int)statusCode responseDictionary:(NSDictionary*)responseDictionary{
     if(statusCode == 402){

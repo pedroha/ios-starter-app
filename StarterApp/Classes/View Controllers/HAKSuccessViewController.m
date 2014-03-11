@@ -26,8 +26,10 @@
  */
 
 #import "HAKSuccessViewController.h"
+#import "HAKMainViewController.h"
 
 @interface HAKSuccessViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end
 
@@ -36,12 +38,17 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	self.logoutButton.layer.cornerRadius = 16;
+}
+
+
+
+- (IBAction)onLogoutPress:(UIButton *)sender {
+    [[HAKMainViewController sharedInstance] animateLogout];
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

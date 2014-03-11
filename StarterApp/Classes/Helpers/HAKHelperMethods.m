@@ -26,6 +26,7 @@
  */
 
 #import "HAKHelperMethods.h"
+#import "KeychainItemWrapper.h"
 
 @implementation HAKHelperMethods
 
@@ -56,6 +57,45 @@
     }
     return NO;
 }
+
+
+
+
+#pragma mark - Keychain
+
++(NSString*)getKeychainUsername{
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    NSString *userName = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
+    return userName;
+}
++(NSString*)getKeychainPassword{
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    NSString *userPassword = [keychain objectForKey:(__bridge id)(kSecValueData)];
+    return userPassword;
+}
+
++(void)setKeychainUsername:(NSString*)userName withPassword:(NSString*)userPassword{
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    [keychain setObject:(__bridge id)(kSecAttrAccessibleWhenUnlocked) forKey:(__bridge id)(kSecAttrAccessible)];
+    [keychain setObject:userName forKey:(__bridge id)(kSecAttrAccount)];
+    [keychain setObject:userPassword forKey:(__bridge id)(kSecValueData)];
+    keychain = nil;
+}
++(void)resetKeychain{
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    [keychain resetKeychainItem];
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

@@ -29,6 +29,7 @@
 
 @interface HAKSuccessViewController : UIViewController
 
+- (IBAction)onLogoutPress:(UIButton *)sender;
 
 
 @end

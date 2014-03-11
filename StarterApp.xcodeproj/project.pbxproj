@@ -12,6 +12,7 @@
 		BB45150518CE6A4700943C19 /* HAKMainViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45150418CE6A4700943C19 /* HAKMainViewControllerTests.m */; };
 		BB45150718CE6D5100943C19 /* HAKAppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45150618CE6D5100943C19 /* HAKAppDelegateTests.m */; };
 		BB45150A18CF66E100943C19 /* HAKMockHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45150918CF66E100943C19 /* HAKMockHelperMethods.m */; };
+		BB45150E18CF84CD00943C19 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45150D18CF84CD00943C19 /* KeychainItemWrapper.m */; };
 		BB7366F518CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */; };
 		BB7366F618CA36C9004E97E6 /* HAKNetworkReachabiltiy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */; };
 		BB7366F918CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7366F818CA45B9004E97E6 /* HAKSuccessViewController.m */; };
@@ -75,6 +76,8 @@
 		BB45150618CE6D5100943C19 /* HAKAppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKAppDelegateTests.m; sourceTree = "<group>"; };
 		BB45150818CF66E100943C19 /* HAKMockHelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAKMockHelperMethods.h; sourceTree = "<group>"; };
 		BB45150918CF66E100943C19 /* HAKMockHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKMockHelperMethods.m; sourceTree = "<group>"; };
+		BB45150C18CF84CD00943C19 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Classes/Vendor/Apple/KeychainItemWrapper.h; sourceTree = "<group>"; };
+		BB45150D18CF84CD00943C19 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Classes/Vendor/Apple/KeychainItemWrapper.m; sourceTree = "<group>"; };
 		BB7366EF18CA3355004E97E6 /* HAKNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkDelegate.h; path = Classes/Network/HAKNetworkDelegate.h; sourceTree = "<group>"; };
 		BB7366F318CA36C9004E97E6 /* HAKNetworkReachabiltiy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkReachabiltiy.h; path = Classes/Network/HAKNetworkReachabiltiy.h; sourceTree = "<group>"; };
 		BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKNetworkReachabiltiy.m; path = Classes/Network/HAKNetworkReachabiltiy.m; sourceTree = "<group>"; };
@@ -167,6 +170,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB45150B18CF848D00943C19 /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				BB45150C18CF84CD00943C19 /* KeychainItemWrapper.h */,
+				BB45150D18CF84CD00943C19 /* KeychainItemWrapper.m */,
+			);
+			name = Apple;
+			sourceTree = "<group>";
+		};
 		BB73670018CA4AF4004E97E6 /* Mocks and Fakes */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +209,7 @@
 		BBE3E12418C511A4008857F8 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				BB45150B18CF848D00943C19 /* Apple */,
 				BBE3E12518C511C4008857F8 /* AFNetworking */,
 			);
 			name = Vendor;
@@ -483,6 +496,7 @@
 				BBE3E13A18C511C4008857F8 /* AFHTTPRequestOperationManager.m in Sources */,
 				BBEB8C0018BD1B090085FA78 /* HAKLoginViewController.m in Sources */,
 				BBEB8BC318BD12D50085FA78 /* main.m in Sources */,
+				BB45150E18CF84CD00943C19 /* KeychainItemWrapper.m in Sources */,
 				BBE3E13B18C511C4008857F8 /* AFHTTPSessionManager.m in Sources */,
 				BB7366F918CA45B9004E97E6 /* HAKSuccessViewController.m in Sources */,
 				BBEB8BF818BD17AA0085FA78 /* HAKMainViewController.m in Sources */,

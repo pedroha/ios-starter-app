@@ -39,5 +39,5 @@
 -(void)animateToRegistrationView;
 -(void)animateToLoginView;
 -(void)animateToSuccessViewFromView:(UIView*)view;
-
+-(void)animateLogout;
 @end

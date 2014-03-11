@@ -33,5 +33,9 @@
 +(BOOL) validateEmail: (NSString *) email;
 +(BOOL) validatePassword:(NSString*) password;
 
++(NSString*)getKeychainUsername;
++(NSString*)getKeychainPassword;
++(void)setKeychainUsername:(NSString*)userName withPassword:(NSString*)userPassword;
++(void)resetKeychain;
 
 @end

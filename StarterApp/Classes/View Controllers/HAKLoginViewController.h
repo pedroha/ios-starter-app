@@ -32,7 +32,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-
+@property (assign,nonatomic) BOOL wantsToSaveUserInfo;
 
 -(id)initWithNib;
 

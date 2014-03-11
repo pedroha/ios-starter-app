@@ -27,6 +27,8 @@
 
 #import <XCTest/XCTest.h>
 #import "HAKHelperMethods.h"
+#import "KeychainItemWrapper.h"
+
 
 @interface HAKHelperMethodsTests : XCTestCase
 
@@ -61,6 +63,52 @@
 -(void)testThatValidatePasswordMethodAllowsValidPasswords{
     XCTAssertTrue([HAKHelperMethods validatePassword:@"unicorns!"], @"Passwords more than 3 characters long should be a valid password");
 }
+
+
+-(void)testThatSetKeychainWorks{
+    [HAKHelperMethods setKeychainUsername:@"testName" withPassword:@"horsebatterystaplecorrect"];
+    
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    NSString *userName = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *userPassword = [keychain objectForKey:(__bridge id)(kSecValueData)];
+    
+    XCTAssertEqualObjects(userName, @"testName", @"The keychain kSecAttrAccount should be set to 'testName'");
+    XCTAssertEqualObjects(userPassword, @"horsebatterystaplecorrect", @"The keychain kSecValueData should be set to 'horsebatterystaplecorrect'");
+}
+-(void)testThatGetKeychainWorks{
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    [keychain setObject:(__bridge id)(kSecAttrAccessibleWhenUnlocked) forKey:(__bridge id)(kSecAttrAccessible)];
+    [keychain setObject:@"testName" forKey:(__bridge id)(kSecAttrAccount)];
+    [keychain setObject:@"horsebatterystaplecorrect" forKey:(__bridge id)(kSecValueData)];
+    keychain = nil;
+    
+    NSString *username = [HAKHelperMethods getKeychainUsername];
+    NSString *password = [HAKHelperMethods getKeychainPassword];
+    
+    XCTAssertEqualObjects(username, @"testName", @"username should be set to 'testName'");
+    XCTAssertEqualObjects(password, @"horsebatterystaplecorrect", @"password should be set to 'horsebatterystaplecorrect'");
+}
+-(void)testThatResetKeychainWorks{
+    KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserCredentials" accessGroup:nil];
+    [keychain setObject:(__bridge id)(kSecAttrAccessibleWhenUnlocked) forKey:(__bridge id)(kSecAttrAccessible)];
+    [keychain setObject:@"testName" forKey:(__bridge id)(kSecAttrAccount)];
+    [keychain setObject:@"horsebatterystaplecorrect" forKey:(__bridge id)(kSecValueData)];
+    keychain = nil;
+    
+    [HAKHelperMethods resetKeychain];
+    
+    NSString *userName = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *userPassword = [keychain objectForKey:(__bridge id)(kSecValueData)];
+
+    XCTAssertNil(userName, @"Reset keychain should set username to nil");
+    XCTAssertNil(userPassword, @"Reset keychain should set password to nil");    
+}
+
+
+
+
+
+
 
 
 @end
