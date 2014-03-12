@@ -28,16 +28,63 @@
 #import <UIKit/UIKit.h>
 #import "HAKNetworkDelegate.h"
 
+
+/**
+ The View Controller in charge of logging in.
+*/
 @interface HAKLoginViewController : UIViewController <HAKNetworkDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (assign,nonatomic) BOOL wantsToSaveUserInfo;
 
+
+///---------------------
+/// @name Initialization
+///---------------------
+
+/** Use this to initialize a new view controller.  (ie don't use initWithNibName:bundle:) */
 -(id)initWithNib;
 
+
+
+///---------------------
+/// @name Required Outlets
+///---------------------
+
+/** A text field in which the user enters their email address. */
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
+/** A text field in which the user enters their password. */
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+
+
+
+///---------------------
+/// @name Button Actions
+///---------------------
+
+
+/** Called when the user presses the login button. */
 - (IBAction)onLoginPress:(UIButton *)sender;
+
+/** Called when the user presses the register button. */
 - (IBAction)onRegisterPress:(UIButton *)sender;
+
+/** Called when the user presses the forget-password button. */
 - (IBAction)onForgotPasswordPress:(UIButton *)sender;
 
+
+
+
+///---------------------
+/// @name Saving Info
+///---------------------
+
+
+/** Indicates whether the user wants their login info saved, so they don't have to log in the next time they use the app.  Currently it is always set to YES.  Feel free to delete this, and replace it with, for instance, a segmented control. */
+@property (assign,nonatomic) BOOL wantsToSaveUserInfo;
+
+
 @end
+
+
+

@@ -34,6 +34,8 @@
 @interface HAKRegistrationViewController ()
 
 @property (strong,nonatomic) HAKNetwork *network;
+- (IBAction)backgroundTap:(UIControl *)sender;
+- (IBAction)textFieldDoneEditing:(UITextField *)sender;
 
 @end
 

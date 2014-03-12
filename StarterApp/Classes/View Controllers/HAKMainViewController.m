@@ -48,7 +48,7 @@
     [super viewDidLoad];
     
     //Uncomment the following line if you need to monitor network access
-    //self.reachability = [[HAKNetworkReachabiltiy alloc] init];
+    //[self setupReachability];
     
     if([self isUserInfoSavedInKeychain]){
         self.successViewController = [[HAKSuccessViewController alloc] initWithNibName:@"SuccessView" bundle:nil];
@@ -58,6 +58,10 @@
         [self.view addSubview:self.loginViewController.view];
     }
 
+}
+
+-(void)setupReachability{
+    self.reachability = [[HAKNetworkReachabiltiy alloc] init];
 }
 
 -(BOOL)isUserInfoSavedInKeychain{

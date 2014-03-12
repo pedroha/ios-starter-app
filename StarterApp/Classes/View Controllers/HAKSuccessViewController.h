@@ -27,8 +27,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+/** This is just a placeholder.  A real app should go here instead!  
+ 
+ You can either delete this and replace references to "HAKSuccessViewController" with your references, or you can just leave it in and have it redirect to your app's viewcontroller.  I recommend the former option, as it is cleaner (no nigh-useless view controllers sitting around!).  Just remember to also change references in the unit tests.
+*/
 @interface HAKSuccessViewController : UIViewController
 
+/** Called when a user presses the logout button.  Brings the user back to the login screen, and deletes their saved info in the keychain. */
 - (IBAction)onLogoutPress:(UIButton *)sender;
 
 

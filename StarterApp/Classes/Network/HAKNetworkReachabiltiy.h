@@ -27,9 +27,14 @@
 
 #import <Foundation/Foundation.h>
 
+
+/** This class monitors network availability using AFNetworking. */
 @interface HAKNetworkReachabiltiy : NSObject
 
+/** If the device is capable of using wifi, and wifi is available, this will be YES. */
 @property (assign,nonatomic) BOOL connectedToWifi;
+
+/** If the device is capable of connecting to the internet, and the internet is available (whether there is wifi or not), this will be YES. */
 @property (assign,nonatomic) BOOL connectedToInternet;
 
 

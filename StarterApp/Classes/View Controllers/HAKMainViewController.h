@@ -28,16 +28,48 @@
 #import <UIKit/UIKit.h>
 @class HAKNetworkReachabiltiy;
 
-
+/** HAKMainViewController is in charge of the other view controllers, and choosing what views the user should be seeing.  It's a singleton - to access it from anywhere, use its sharedInstance method.  For example:
+ 
+    [[HAKMainViewController sharedInstance] animateToLoginView]
+*/
 @interface HAKMainViewController : UIViewController
 
+
+///---------------------
+/// @name Shared Instance
+///---------------------
+
+
+/** Use this to access HAKMainViewController. 
+ @return The shared instance of HAKMainViewController
+*/
+ +(HAKMainViewController*) sharedInstance;
+
+
+///---------------------
+/// @name Network Reachability
+///---------------------
+
+
+/** This is for monitoring network status, such as wifi availability. */
 @property (strong,nonatomic) HAKNetworkReachabiltiy *reachability;
 
 
-+(HAKMainViewController*) sharedInstance;
+///---------------------
+/// @name Animation
+///---------------------
 
+/** Animate to the registration view from the login view. */
 -(void)animateToRegistrationView;
+
+/** Animate to the login view from the registration view. */
 -(void)animateToLoginView;
+
+/** Animate to the success view from any view.
+ @param view The current view that the user wishes to animate away from.
+*/
 -(void)animateToSuccessViewFromView:(UIView*)view;
+
+/** Animate from the success view to the login view. */
 -(void)animateLogout;
 @end

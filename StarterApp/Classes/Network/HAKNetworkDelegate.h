@@ -27,10 +27,33 @@
 
 #import <Foundation/Foundation.h>
 
+/** 
+ On network success or error, HAKNetwork will invoke these methods on the delegate.
+*/
 @protocol HAKNetworkDelegate <NSObject>
 
+/** Called when HAKNetwork receives a successful response from the backend API.
+ @param name The name of the action that is taking place.  Use the constants defined in HAKNotificationConstants.
+ @param responseDictionary The JSON returned from the server as an NSDictionary.  Currently contains just a message (@{@"message":@"some message from the server"), but feel free to add whatever additional info you like to it.
+*/
 -(void)networkSuccess:(NSString*)name responseDictionary:(NSDictionary*)responseDictionary;
 
+/** Called when HAKNetwork receives an unsuccessful response from the backend API.
+ 
+ Possible status codes:   (feel free to add more!)
+ 
+    200 Ok
+    400 Bad Request
+    401 User already exists
+    402 User does not exist
+    403 Password is incorrect
+ 
+ @param name The name of the action that is taking place.  Use the constants defined in HAKNotificationConstants.
+ @param error The error that occured
+ @param statusCode The status code from the network response.  For example, status code 403 indicates that the user has entered an incorrect password.  Check the discussion section for other possible status codes.
+ 
+ @param responseDictionary The JSON returned from the server as an NSDictionary.  Currently contains just a message (@{@"message":@"some message from the server"), but feel free to add whatever additional info you like to it.
+ */
 -(void)networkFailure:(NSString*)name error:(NSError*)error statusCode:(int)statusCode responseDictionary:(NSDictionary*)responseDictionary;
 
 

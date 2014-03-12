@@ -28,26 +28,66 @@
 #import <UIKit/UIKit.h>
 #import "HAKNetworkDelegate.h"
 
+
+/** The view controller in charge of registration. */
 @interface HAKRegistrationViewController : UIViewController <HAKNetworkDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordVerifyField;
-@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
-@property (weak, nonatomic) IBOutlet UITextField *nicknameField;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
 
 
+///---------------------
+/// @name Initialization
+///---------------------
 
--(void)doneAnimating;
+/** Use this to initialize a new view controller.  (ie don't use initWithNibName:bundle:) */
 -(id)initWithNib;
 
-- (IBAction)onBackPress:(UIButton *)sender;
-- (IBAction)onRegisterPress:(UIButton *)sender;
-- (IBAction)backgroundTap:(UIControl *)sender;
-- (IBAction)textFieldDoneEditing:(UITextField *)sender;
 
+///---------------------
+/// @name Required Outlets
+///---------------------
+
+/** A text field in which the user enters their email address. */
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
+/** A text field in which the user enters their password. */
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+/** A text field in which the user enters their password again, to verify that they entered it correctly. */
+@property (weak, nonatomic) IBOutlet UITextField *passwordVerifyField;
+
+/** A text field in which the user enters their first name.  Currently optional, but feel free to make this a requirement. */
+@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
+
+/** A text field in which the user enters their last name.  Currently optional, but feel free to make this a requirement. */
+@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
+
+/** A text field in which the user enters their nickname.  Currently optional, but feel free to make this a requirement. */
+@property (weak, nonatomic) IBOutlet UITextField *nicknameField;
+
+
+
+///---------------------
+/// @name Button Actions
+///---------------------
+
+/* Called when the user presses the back button.  Tells HAKMainViewController to animate back to the login screen. */
+- (IBAction)onBackPress:(UIButton *)sender;
+
+/** Called when the user presses the register button.  Takes all the info that the user entered into the text fields, and makes a call to the backend API. */
+- (IBAction)onRegisterPress:(UIButton *)sender;
+
+
+
+
+///---------------------
+/// @name Making Things Pretty
+///---------------------
+
+/** An array of buttons to be styled.  All the buttons added to this collection will have their corners rounded. */
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
+
+/** Called when the animation to the registration view is complete.  Tells the emailField to become the first responder. */
+-(void)doneAnimating;
 
 
 @end

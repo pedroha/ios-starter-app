@@ -62,7 +62,7 @@
                         <constraint firstAttribute="height" constant="30" id="LOK-v3-QDM"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
                     <connections>
                         <action selector="passwordFieldDoneEditing:" destination="-1" eventType="editingDidEndOnExit" id="ieI-3Z-muy"/>
                     </connections>

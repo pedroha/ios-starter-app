@@ -114,6 +114,10 @@
 }
 
 
+-(void)dealloc{
+    self.delegate = nil;
+}
+
 
 
 

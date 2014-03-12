@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		BB45150F18CF992A00943C19 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BB45151018CF992A00943C19 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				BB45151318CF99EF00943C19 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		BB4514FE18CE405C00943C19 /* HAKFakeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4514FD18CE405C00943C19 /* HAKFakeAlertView.m */; };
 		BB45150318CE5FF400943C19 /* HAKLoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45150218CE5FF400943C19 /* HAKLoginViewControllerTests.m */; };
@@ -78,6 +92,7 @@
 		BB45150918CF66E100943C19 /* HAKMockHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAKMockHelperMethods.m; sourceTree = "<group>"; };
 		BB45150C18CF84CD00943C19 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Classes/Vendor/Apple/KeychainItemWrapper.h; sourceTree = "<group>"; };
 		BB45150D18CF84CD00943C19 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Classes/Vendor/Apple/KeychainItemWrapper.m; sourceTree = "<group>"; };
+		BB45151418CF9B2E00943C19 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		BB7366EF18CA3355004E97E6 /* HAKNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkDelegate.h; path = Classes/Network/HAKNetworkDelegate.h; sourceTree = "<group>"; };
 		BB7366F318CA36C9004E97E6 /* HAKNetworkReachabiltiy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAKNetworkReachabiltiy.h; path = Classes/Network/HAKNetworkReachabiltiy.h; sourceTree = "<group>"; };
 		BB7366F418CA36C9004E97E6 /* HAKNetworkReachabiltiy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAKNetworkReachabiltiy.m; path = Classes/Network/HAKNetworkReachabiltiy.m; sourceTree = "<group>"; };
@@ -255,6 +270,7 @@
 		BBEB8BA818BD12D50085FA78 = {
 			isa = PBXGroup;
 			children = (
+				BB45151418CF9B2E00943C19 /* readme.markdown */,
 				BBEB8BBC18BD12D50085FA78 /* StarterApp */,
 				BBEB8BD918BD12D50085FA78 /* StarterAppTests */,
 				BBEB8BB318BD12D50085FA78 /* Frameworks */,
@@ -453,6 +469,7 @@
 			targets = (
 				BBEB8BB018BD12D50085FA78 /* StarterApp */,
 				BBEB8BD018BD12D50085FA78 /* StarterAppTests */,
+				BB45150F18CF992A00943C19 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -482,6 +499,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BB45151318CF99EF00943C19 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"StarterApp\" \\\n--project-company \"The Hackerati, Inc.\" \\\n--company-id \"com.hackerati\" \\\n--output \"~/Projects/Help/${PROJECT_NAME}\" \\\n--install-docset \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--ignore \"Vendor\" \\\n--ignore \"HAKAppDelegate.h\" \\\n--ignore \"HAKViewController.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BBEB8BAD18BD12D50085FA78 /* Sources */ = {
@@ -560,6 +593,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BB45151118CF992A00943C19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BB45151218CF992A00943C19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		BBEB8BE118BD12D50085FA78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -705,6 +752,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BB45151018CF992A00943C19 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB45151118CF992A00943C19 /* Debug */,
+				BB45151218CF992A00943C19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BBEB8BAC18BD12D50085FA78 /* Build configuration list for PBXProject "StarterApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
